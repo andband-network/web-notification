@@ -1,2 +1,2 @@
 # web-notification
-Email Notification Service
+Notification Service
