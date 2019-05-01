@@ -19,6 +19,12 @@ public class NotificationController {
         notificationService.userRegistration(request);
     }
 
+    @PostMapping("/confirm-registration")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void confirmRegistration(@RequestBody NotificationRequest request) {
+        notificationService.confirmRegistration(request);
+    }
+
     @PostMapping("/profile-message")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void profileMessage(@RequestBody NotificationRequest request) {

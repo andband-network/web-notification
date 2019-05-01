@@ -35,6 +35,15 @@ public class NotificationService {
         sendEmail(request.getEmail(), emailContent.getSubject(), body);
     }
 
+    void confirmRegistration(NotificationRequest request) {
+        EmailContent emailContent = emailContentRepository.findByType(EmailType.REGISTRATION_CONFIRMATION);
+
+        String userName = request.getToProfileName();
+        String body = String.format(emailContent.getBody(), userName);
+
+        sendEmail(request.getEmail(), emailContent.getSubject(), body);
+    }
+
     void profileMessage(NotificationRequest request) {
         EmailContent emailContent = emailContentRepository.findByType(EmailType.PROFILE_MESSAGE);
 
