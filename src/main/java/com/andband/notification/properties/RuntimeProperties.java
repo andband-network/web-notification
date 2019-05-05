@@ -5,7 +5,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Component
-@PropertySource("classpath:com/andband/notification/properties/runtime-${runtime_environment:prod}.properties")
+@PropertySource("classpath:com/andband/notification/properties/runtime-${env}.properties")
 public class RuntimeProperties {
 
     @Value("${confirm-registration-url}")
@@ -15,7 +15,4 @@ public class RuntimeProperties {
         return confirmRegistrationUrl;
     }
 
-    public void setConfirmRegistrationUrl(String confirmRegistrationUrl) {
-        this.confirmRegistrationUrl = confirmRegistrationUrl;
-    }
 }
