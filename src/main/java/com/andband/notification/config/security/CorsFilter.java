@@ -1,4 +1,4 @@
-package com.andband.notification.security.filter;
+package com.andband.notification.config.security;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -34,5 +34,4 @@ public class CorsFilter implements Filter {
     @Override
     public void init(FilterConfig config) {
     }
-
 }

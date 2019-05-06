@@ -1,4 +1,4 @@
-package com.andband.notification.security;
+package com.andband.notification.config.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,7 +15,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .anyRequest().hasAuthority("ROLE_INTERNAL_API");
+                .anyRequest().hasAuthority("ROLE_INTERNAL_API")
+                .and()
+                .csrf().disable();
     }
 
 }
