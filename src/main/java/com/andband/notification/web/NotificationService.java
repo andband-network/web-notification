@@ -27,10 +27,9 @@ public class NotificationService {
         String userName = request.getToProfileName();
 
         String tokenString = request.getText();
-        String confirmRegistrationUrl = runtimeProperties.getConfirmRegistrationUrl();
-        String tokenUrl = confirmRegistrationUrl + tokenString;
+        String confirmRegistrationUrl = runtimeProperties.getAndbandUrl() + "/confirm-registration/" + tokenString;
 
-        String body = String.format(emailContent.getBody(), userName, tokenUrl);
+        String body = String.format(emailContent.getBody(), userName, confirmRegistrationUrl);
 
         sendEmail(request.getEmail(), emailContent.getSubject(), body);
     }
@@ -64,6 +63,19 @@ public class NotificationService {
 
     void connectionConfirmed(NotificationRequest request) {
         sendConnectionNotification(request, EmailType.CONNECTION_CONFIRMED);
+    }
+
+    void resetPassword(NotificationRequest request) {
+        EmailContent emailContent = emailContentRepository.findByType(EmailType.RESET_PASSWORD);
+
+        String userName = request.getToProfileName();
+
+        String tokenString = request.getText();
+        String resetPasswordUrl = runtimeProperties.getAndbandUrl() + "/reset-password/" + tokenString;
+
+        String body = String.format(emailContent.getBody(), userName, resetPasswordUrl);
+
+        sendEmail(request.getEmail(), emailContent.getSubject(), body);
     }
 
     private void sendConnectionNotification(NotificationRequest request, EmailType emailType) {

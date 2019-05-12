@@ -8,11 +8,11 @@ import org.springframework.stereotype.Component;
 @PropertySource("classpath:com/andband/notification/properties/runtime-${env}.properties")
 public class RuntimeProperties {
 
-    @Value("${confirm-registration-url}")
-    private String confirmRegistrationUrl;
+    @Value("${andband-url}")
+    private String andbandUrl;
 
-    public String getConfirmRegistrationUrl() {
-        return confirmRegistrationUrl;
+    public String getAndbandUrl() {
+        return andbandUrl;
     }
 
 }

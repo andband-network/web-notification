@@ -32,16 +32,16 @@ public class NotificationApplication {
 
     @Bean
     @Primary
-    public RemoteTokenServices tokenService(@Qualifier("restTemplate") RestTemplate restTemplate,
+    public RemoteTokenServices remoteTokenServices(@Qualifier("restTemplate") RestTemplate restTemplate,
                                             @Value("${andband.auth.oauth.check-token-uri}") String checkTokenEndpoint,
                                             @Value("${andband.auth.client.internal-api.client-id}") String clientId,
                                             @Value("${andband.auth.client.internal-api.client-secret}") String clientSecret) {
-        RemoteTokenServices tokenService = new RemoteTokenServices();
-        tokenService.setCheckTokenEndpointUrl(checkTokenEndpoint);
-        tokenService.setClientId(clientId);
-        tokenService.setClientSecret(clientSecret);
-        tokenService.setRestTemplate(restTemplate);
-        return tokenService;
+        RemoteTokenServices tokenServices = new RemoteTokenServices();
+        tokenServices.setCheckTokenEndpointUrl(checkTokenEndpoint);
+        tokenServices.setClientId(clientId);
+        tokenServices.setClientSecret(clientSecret);
+        tokenServices.setRestTemplate(restTemplate);
+        return tokenServices;
     }
 
 }

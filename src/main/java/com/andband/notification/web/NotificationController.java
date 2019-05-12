@@ -43,4 +43,10 @@ public class NotificationController {
         notificationService.connectionConfirmed(request);
     }
 
+    @PostMapping("/reset-password")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void resetPassword(@RequestBody NotificationRequest request) {
+        notificationService.resetPassword(request);
+    }
+
 }

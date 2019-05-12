@@ -41,7 +41,7 @@ public class NotificationServiceTest {
         String toProfileName = "User1";
         String fromProfileName = "User2";
         String tokenString = "TokenString123";
-        String confirmRegistrationUrl = "http://andband.xyz/confirm-registration/";
+        String confirmRegistrationUrl = "http://andband.xyz";
 
         NotificationRequest notificationRequest = new NotificationRequestBuilder()
                 .withEmail(email)
@@ -58,15 +58,15 @@ public class NotificationServiceTest {
         SimpleMailMessage expectedMessage = new SimpleMailMessage();
         expectedMessage.setTo(email);
         expectedMessage.setSubject("Confirm registration");
-        expectedMessage.setText("Hi " + toProfileName + ", \n\nPlease use the link below to confirm your AndBand registration.\n\n" + confirmRegistrationUrl + tokenString + "\n\nThis link will remain active for two days.");
+        expectedMessage.setText("Hi " + toProfileName + ", \n\nPlease use the link below to confirm your AndBand registration.\n\n" + confirmRegistrationUrl + "/confirm-registration/" + tokenString + "\n\nThis link will remain active for two days.");
 
         when(mockEmailContentRepository.findByType(EmailType.REGISTRATION)).thenReturn(emailContent);
-        when(mockRuntimeProperties.getConfirmRegistrationUrl()).thenReturn(confirmRegistrationUrl);
+        when(mockRuntimeProperties.getAndbandUrl()).thenReturn(confirmRegistrationUrl);
 
         notificationService.userRegistration(notificationRequest);
 
         verify(mockEmailContentRepository).findByType(EmailType.REGISTRATION);
-        verify(mockRuntimeProperties).getConfirmRegistrationUrl();
+        verify(mockRuntimeProperties).getAndbandUrl();
         verify(mockMailSender).send(refEq(expectedMessage));
     }
 
